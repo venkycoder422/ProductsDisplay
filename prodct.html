@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>products</title>
+
+
+
+<style>
+
+
+body{
+  margin: 0%;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-left: 5%;
+  margin-right: 5%;
+  grid-gap: 20px;
+  margin-top: 100px;
+}
+
+#container > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #0f3ec9;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 24px;
+  
+ 
+}
+
+img {
+  width: 200px;
+  height: 200px;
+}
+#title{
+  text-align: center;
+  width: 100%;
+  font-size: 20px;
+  position: fixed;
+  background-color: #cecece;
+  color: black;margin-top: -100px;
+}
+
+</style>
+</head>
+
+<body>
+  <div>
+    <div id="title"><h2>Shoping products</h2></div>
+  </div>
+  <div>
+    <div id="container"> </div>
+  </div>
+  
+
+
+
+
+
+
+
+
+</body>
+<script>
+  var container=document.getElementById("container");
+  var url="https://fakestoreapi.com/products";
+  
+  
+  
+  
+  async function getData(){
+       try{
+  var res=await fetch(url);
+  
+  var data=await res.json();
+  console.log(data);
+  displayData(data);
+  
+  
+  }
+       catch(err){
+  console.log(err)
+  }
+  }
+  getData();
+  function displayData(data){
+      data.forEach (function (product){
+  
+  var productCard=document.createElement("div");
+  
+  let img=document.createElement("img");
+  img.src=product.image;
+  
+  let tittle=document.createElement("p");
+  
+  tittle.textContent=product.title;
+  
+  
+  productCard.append(img,tittle);
+  
+  container.append(productCard);
+  
+  
+  });
+  
+  }
+  
+  
+  </script>
+</html>
